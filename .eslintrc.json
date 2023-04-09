@@ -40,6 +40,9 @@
                 "trailingComma": "all",
                 "printWidth": 80
             }
-        ]
+        ],
+        "react/function-component-definition": ["error", {
+            "namedComponents": "arrow-function", "unnamedComponents": "arrow-function"
+        }]
     }
 }
