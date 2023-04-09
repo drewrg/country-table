@@ -8,7 +8,8 @@
         "plugin:react/recommended",
         "airbnb",
         "airbnb-typescript",
-        "plugin:import/typescript"
+        "plugin:import/typescript",
+        "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -21,12 +22,24 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "rules": {
         "react/jsx-uses-react": ["off"],
         "react/react-in-jsx-scope": ["off"],
         "react/jsx-props-no-spreading": ["off"],
-        "no-shadow":  "off"
+        "no-shadow":  "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "tabWidth": 2,
+                "useTabs": false,
+                "semi": false,
+                "singleQuote": true,
+                "trailingComma": "all",
+                "printWidth": 80
+            }
+        ]
     }
 }
