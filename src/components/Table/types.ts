@@ -11,7 +11,7 @@ export interface Country {
   capital: string[]
   region: string
   subregion: string
-  languages: Language[]
+  languages: Languages
   area: number
   flag: string
 }
@@ -31,6 +31,4 @@ export interface Currency {
   symbol: string
 }
 
-export interface Language {
-  [key: string]: string
-}
+export type Languages = Record<string, string>

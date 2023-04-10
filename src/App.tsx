@@ -12,7 +12,7 @@ const App = () => {
       const response = await axios.get(
         'https://restcountries.com/v3.1/all?fields=flag,name,capital,region,subregion,languages,currencies,independent,area',
       )
-      setData(response.data.slice(0, 10))
+      setData(response.data)
     }
     fetchData().catch((error) => console.log(error))
   }, [])
