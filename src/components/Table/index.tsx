@@ -1,37 +1,66 @@
-import React from 'react'
-import { useTable } from 'react-table'
+import React, { useMemo } from 'react'
+import { useTable, Column } from 'react-table'
+import { Country, Language, TableProps } from './types'
 import './index.scss'
 
-const Table = () => {
-  const data: Array<any> = React.useMemo(
-    () => [
-      {
-        col1: 'Hello',
-        col2: 'World',
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks',
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want',
-      },
-    ],
-    [],
-  )
+const FlagImage = ({ value }: { value: string }) => value
+const Table = (props: TableProps) => {
+  const { data } = props
 
-  const columns: Array<any> = React.useMemo(
-    () => [
-      {
-        Header: 'Column 1',
-        accessor: 'col1',
-      },
-      {
-        Header: 'Column 2',
-        accessor: 'col2',
-      },
-    ],
+  const columns: Column<Country>[] = useMemo(
+    () =>
+      [
+        {
+          Header: 'Flag',
+          accessor: 'flag',
+          Cell: FlagImage,
+        },
+        {
+          Header: 'Country Name',
+          accessor: 'name',
+          Cell: ({ value: name }: { value: any }) => name.official,
+        },
+        {
+          Header: 'Capital Name',
+          accessor: (country: Country) => country.capital,
+        },
+        {
+          Header: 'Region',
+          accessor: (country: Country) => country.region,
+        },
+        {
+          Header: 'Sub-region',
+          accessor: (country: Country) => country.subregion,
+        },
+        {
+          Header: 'Language',
+          accessor: (country: Country) => country.languages,
+          Cell: ({ value: languages }: { value: Language }) => {
+            return Object.values(languages).join(', ')
+          },
+        },
+        {
+          Header: 'Currency with symbol',
+          accessor: (country: Country) => country.currencies,
+          Cell: ({ value }: { value: any }) => {
+            const currencies = Object.values(value)
+            return currencies
+              .map((currency: any) => {
+                return `${currency.name} (${currency.symbol})`
+              })
+              .join(',')
+          },
+        },
+        {
+          Header: 'Independent (Yes/No)',
+          accessor: (country: Country) => country.independent,
+          Cell: ({ value }: { value: any }) => (value ? 'Yes' : 'No'),
+        },
+        {
+          Header: 'Area (sq/km)',
+          accessor: (country: Country) => country.area,
+        },
+      ] as Column<Country>[],
     [],
   )
 

@@ -1,1 +1,69 @@
+@import '../../styles/variables';
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+th,
+td {
+  padding: 10px 15px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+td {
+  border-top: 10px solid #202324;
+}
+
+tr {
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: light) {
+  table {
+    color: $color-light;
+  }
+  th {
+    background-color: $table-header-background-color-light;
+  }
+  tr {
+    background-color: $table-row-odd-color-light;
+    &:nth-child(even) {
+      background-color: $table-row-even-color-light;
+    }
+    &:hover {
+      background-color: $table-row-even-color-light;
+    }
+    td {
+      border-top-color: $background-color-light;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  table {
+    color: $color-dark;
+  }
+  th {
+    background-color: $table-header-background-color-dark;
+  }
+  tr {
+    background-color: $table-row-odd-color-dark;
+    &:nth-child(even) {
+      background-color: $table-row-even-color-dark;
+    }
+    &:hover {
+      background-color: $table-row-hover-color-dark;
+    }
+    td {
+      border-top-color: $background-color-dark;
+    }
+  }
+}
