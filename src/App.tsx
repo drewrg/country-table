@@ -1,10 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
 import { Table, Header } from 'components'
+import SearchContext, { SearchContextType } from 'contexts/searchContext'
+import useSearchValue from 'hooks/useSearchValue'
 import 'App.scss'
 
 const App = () => {
   const [data, setData] = useState([])
+
+  const searchContextValue = useSearchValue()
+
+  const value = useMemo<SearchContextType>(
+    () => searchContextValue,
+    [searchContextValue],
+  )
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,17 +22,19 @@ const App = () => {
       )
       setData(response.data)
     }
-    fetchData().catch((error) => console.log(error))
+    fetchData().catch((error) => console.error(error))
   }, [])
 
   return (
-    <div className="App">
-      <Header title="World Countries Desk" />
+    <SearchContext.Provider value={value}>
+      <div className="App">
+        <Header title="World Countries Desk" />
 
-      <div className="card">
-        <Table data={data} />
+        <div className="card">
+          <Table data={data} />
+        </div>
       </div>
-    </div>
+    </SearchContext.Provider>
   )
 }
 

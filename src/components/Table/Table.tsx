@@ -1,12 +1,18 @@
-import React, { useMemo, useState } from 'react'
-import { useTable, Column, useSortBy, usePagination } from 'react-table'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
+import {
+  useTable,
+  Column,
+  useSortBy,
+  usePagination,
+  useGlobalFilter,
+} from 'react-table'
+import SearchContext from 'contexts/searchContext'
 import { Country, TableProps } from './types'
 import './styles.scss'
 
-const Table = (props: TableProps) => {
+const Table: React.FC<TableProps> = ({ data }) => {
+  const [searchValue] = useContext(SearchContext)
   const [pageNumber, setPageNumber] = useState(0)
-
-  const { data } = props
 
   const columns: Column<Country>[] = useMemo(
     () =>
@@ -57,7 +63,6 @@ const Table = (props: TableProps) => {
       ] as Column<Country>[],
     [],
   )
-
   const tableInstance = useTable(
     {
       columns,
@@ -67,6 +72,7 @@ const Table = (props: TableProps) => {
         pageSize: 10,
       },
     },
+    useGlobalFilter,
     useSortBy,
     usePagination,
   )
@@ -84,8 +90,13 @@ const Table = (props: TableProps) => {
     nextPage,
     previousPage,
     setPageSize,
+    setGlobalFilter,
     state: { pageIndex, pageSize },
   } = tableInstance
+
+  useEffect(() => {
+    setGlobalFilter(searchValue)
+  }, [searchValue])
 
   return (
     <>
@@ -160,7 +171,6 @@ const Table = (props: TableProps) => {
           | Go to page:{' '}
           <input
             type="number"
-            defaultValue={pageIndex + 1}
             value={pageNumber}
             onChange={(e) => {
               setPageNumber(+e.target.value)
