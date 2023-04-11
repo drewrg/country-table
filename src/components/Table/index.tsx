@@ -1,9 +1,11 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useTable, Column, useSortBy, usePagination } from 'react-table'
 import { Country, TableProps } from './types'
 import './index.scss'
 
 const Table = (props: TableProps) => {
+  const [pageNumber, setPageNumber] = useState(0)
+
   const { data } = props
 
   const columns: Column<Country>[] = useMemo(
@@ -61,7 +63,7 @@ const Table = (props: TableProps) => {
       columns,
       data,
       initialState: {
-        pageIndex: 0,
+        pageIndex: pageNumber,
         pageSize: 10,
       },
     },
@@ -119,7 +121,7 @@ const Table = (props: TableProps) => {
           })}
         </tbody>
       </table>
-      <div>
+      <div className="pagination">
         <button
           type="button"
           onClick={() => gotoPage(0)}
@@ -159,14 +161,20 @@ const Table = (props: TableProps) => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
+            value={pageNumber}
             onChange={(e) => {
-              const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(pageNumber)
+              setPageNumber(+e.target.value)
+            }}
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                gotoPage(pageNumber < 1 ? 0 : pageNumber - 1)
+              }
             }}
             style={{ width: '50px' }}
           />
         </span>
         <select
+          id="page-size"
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value))

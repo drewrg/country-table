@@ -25,6 +25,7 @@ const App = () => {
         </a>
       </div>
       <h1>Countries table</h1>
+
       <div className="card">
         <Table data={data} />
       </div>

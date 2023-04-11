@@ -1,26 +1,96 @@
+// Naming assumes
+// color-light: color for light mode
+// color-dark: color for dark mode
+
+// ** Typography
 $font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-$line-height: 1.5;
-$font-weight: 400;
 
-$color-light: #f5f5f5;
-$color-dark: #5c5a5a;
+$font-size-xxs: 0.75rem;
+$font-size-xs: 0.875rem;
+$font-size-sm: 1rem;
+$font-size-md: 1.35rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 1.75rem;
+$font-size-xxl: 2rem;
 
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$line-height-xs: 1.2;
+$line-height-sm: 1.5;
+$line-height-md: 1.8;
+$line-height-lg: 2.1;
+$line-height-xl: 2.4;
+$line-height-xxl: 2.7;
+
+$color-light: #3c3a3a;
+$color-dark: #f5f5f5;
+
+// ** Background
+// light
 $background-color-light: #fefefe;
+$background-card-color-light: #e6e6e6;
+// dark
 $background-color-dark: #151718;
-$color-light: #444444;
-$color-dark: #f2f2f2;
+$background-card-color-dark: #202324;
 
+// ** Spacing variables
+$spacing-xxs: 0.25rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+$spacing-xxxl: 4rem;
+
+
+// Buttons
 $button-background-color: #ededed;
 
-$table-color-light: #4d4d4d;
-$table-color-dark: #ffffff;
+// ** Table
+// light
 $table-header-background-color-light: #dddddd;
-$table-header-background-color-dark: #444444;
 $table-background-color-light: #f0f0f0;
-$table-background-color-dark: #5c5a5a;
 $table-row-hover-color-light: #d9d9d9;
+$table-row-even-color-light: $background-card-color-light;
+$table-row-odd-color-light: $background-card-color-light;
+// dark
+$table-header-background-color-dark: #444444;
+$table-background-color-dark: #5c5a5a;
 $table-row-hover-color-dark: #5c5a5a;
-$table-row-even-color-light: #e6e6e6;
-$table-row-even-color-dark: #202324;
-$table-row-odd-color-light: #e6e6e6;
-$table-row-odd-color-dark: #202324;
+$table-row-even-color-dark: $background-card-color-dark;
+$table-row-odd-color-dark: $background-card-color-dark;
+
+// ** Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// ** Borders
+$border-radius: 4px;
+$border-width: 1px;
+$border-color: #ccc;
+
+// ** Forms
+$input-padding: 0.5rem;
+$input-border-radius: 4px;
+$input-border-width: 1px;
+$input-border-color: #ccc;
+
+// ** Shadows
+$shadow-color: rgba(0, 0, 0, 0.1);
+$shadow-sm: 0 1px 2px $shadow-color;
+$shadow-md: 0 4px 6px $shadow-color;
+$shadow-lg: 0 10px 15px $shadow-color;
+$shadow-xl: 0 20px 25px $shadow-color;
+
+// ** Z-index
+$z-index-header: 100;
+$z-index-modal: 200;
+
+// ** Animations
+$animation-duration: 0.3s;
