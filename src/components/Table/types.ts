@@ -1,4 +1,4 @@
-export type TableProps = {
+export interface TableProps {
   data: Countries
 }
 

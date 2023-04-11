@@ -31,9 +31,11 @@ $color-dark: #f5f5f5;
 // ** Background
 // light
 $background-color-light: #fefefe;
+$background-color-light-2: #f0f0f0;
 $background-card-color-light: #e6e6e6;
 // dark
 $background-color-dark: #151718;
+$background-color-dark-2: #565656;
 $background-card-color-dark: #202324;
 
 // ** Spacing variables
@@ -52,14 +54,12 @@ $button-background-color: #ededed;
 
 // ** Table
 // light
-$table-header-background-color-light: #dddddd;
-$table-background-color-light: #f0f0f0;
+$table-header-background-color-light: $background-color-light-2;
 $table-row-hover-color-light: #d9d9d9;
 $table-row-even-color-light: $background-card-color-light;
 $table-row-odd-color-light: $background-card-color-light;
 // dark
-$table-header-background-color-dark: #444444;
-$table-background-color-dark: #5c5a5a;
+$table-header-background-color-dark: $background-color-dark-2;
 $table-row-hover-color-dark: #5c5a5a;
 $table-row-even-color-dark: $background-card-color-dark;
 $table-row-odd-color-dark: $background-card-color-dark;
@@ -94,3 +94,6 @@ $z-index-modal: 200;
 
 // ** Animations
 $animation-duration: 0.3s;
+
+// ** Header
+$header-height: 60px;

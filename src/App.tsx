@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import globeLogo from './assets/globe.svg'
-import './App.css'
-import Table from './components/Table'
+import { Table, Header } from 'components'
+import 'App.scss'
 
 const App = () => {
   const [data, setData] = useState([])
@@ -19,12 +18,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={globeLogo} className="logo" alt="Vite logo" />
-        </a>
-      </div>
-      <h1>Countries table</h1>
+      <Header title="World Countries Desk" />
 
       <div className="card">
         <Table data={data} />

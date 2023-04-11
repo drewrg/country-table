@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useTable, Column, useSortBy, usePagination } from 'react-table'
 import { Country, TableProps } from './types'
-import './index.scss'
+import './styles.scss'
 
 const Table = (props: TableProps) => {
   const [pageNumber, setPageNumber] = useState(0)

@@ -1,0 +1,41 @@
+@import "../../styles/variables";
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: $shadow-sm;
+  z-index: $z-index-header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-xxl;
+  height: $header-height;
+
+  .title {
+    font-weight: $font-weight-light;
+    font-size: $font-size-xxl;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 4rem;
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .sticky-header {
+    background-color: $background-card-color-light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .sticky-header {
+    background-color: #565656;
+  }
+}
