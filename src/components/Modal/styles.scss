@@ -1,0 +1,109 @@
+@import '../../styles/variables';
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-index-modal;
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgray;
+    border-radius: 0.3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    min-height: 35rem;
+    min-width: 60rem;
+    max-height: 80vh;
+    max-width: 80vw;
+    overflow: auto;
+  }
+
+  .modal-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+
+    .modal-loader-spinner {
+      width: 6rem;
+      height: 6rem;
+      border: 0.3rem solid;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #999;
+    padding: $spacing-md $spacing-xl;
+    margin-bottom: 1rem;
+  }
+
+  .modal-content {
+    padding: $spacing-xl;
+    .modal-content-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #999;
+      &-label {
+        margin-right: $spacing-lg;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      &-value {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .modal {
+    background-color: $modal-wrapper-background-color-light;
+    &-wrapper {
+      border: 1px solid $modal-border-color-light;
+      background-color: $modal-background-color-light;
+    }
+    &-loader {
+      &-spinner {
+        border-color: $spinner-color-light;
+      }
+    }
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .modal {
+    background-color: $modal-wrapper-background-color-dark;
+    &-wrapper {
+      border: 1px solid $modal-border-color-dark;
+      background-color: $modal-background-color-dark;
+    }
+    &-loader {
+      &-spinner {
+        border-color: $spinner-color-dark;
+      }
+    }
+  }
+}

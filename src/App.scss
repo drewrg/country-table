@@ -1,0 +1,28 @@
+@import './styles/variables.scss';
+
+#root {
+  max-width: $breakpoint-xl;
+  padding: 2rem;
+  text-align: center;
+  margin: $header-height auto 0;
+}
+
+.logo {
+  img:hover {
+    filter: drop-shadow(0 0 0.1rem #646cffaa);
+  }
+}
+
+.card {
+  padding: 2rem 0;
+  margin: 0 auto;
+}
+
+.read-the-docs {
+  color: #888;
+}
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}

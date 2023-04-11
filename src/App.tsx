@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useMemo, useState } from 'react'
+import axios from 'axios'
+import { Table, Header } from 'components'
+import SearchContext, { SearchContextType } from 'contexts/searchContext'
+import useSearchValue from 'hooks/useSearchValue'
+import 'App.scss'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [data, setData] = useState([])
+
+  const searchContextValue = useSearchValue()
+
+  const value = useMemo<SearchContextType>(
+    () => searchContextValue,
+    [searchContextValue],
+  )
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        'https://restcountries.com/v3.1/all?fields=flag,name,capital,region,subregion,languages,currencies,independent,area',
+      )
+      setData(response.data)
+    }
+    fetchData().catch((error) => console.error(error))
+  }, [])
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <SearchContext.Provider value={value}>
+      <div className="App">
+        <Header title="World Countries Desk" />
+
+        <div className="card">
+          <Table data={data} />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    </SearchContext.Provider>
   )
 }
 
