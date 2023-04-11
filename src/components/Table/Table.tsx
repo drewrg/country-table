@@ -7,12 +7,26 @@ import {
   useGlobalFilter,
 } from 'react-table'
 import SearchContext from 'contexts/searchContext'
+import { Modal } from 'components'
+import { parseCountryData } from 'utils/countriesTable'
 import { Country, TableProps } from './types'
 import './styles.scss'
 
 const Table: React.FC<TableProps> = ({ data }) => {
   const [searchValue] = useContext(SearchContext)
+  const [countryData, setCountryData] = useState<any>()
+  const [modalState, setModalState] = useState<boolean>(false)
   const [pageNumber, setPageNumber] = useState(0)
+
+  const fetchCountryData = async (countryName: string) => {
+    setModalState(true)
+    const response = await fetch(
+      `https://restcountries.com/v3.1/name/${countryName}`,
+    )
+    const data = await response.json()
+
+    setCountryData(parseCountryData(data[0]))
+  }
 
   const columns: Column<Country>[] = useMemo(
     () =>
@@ -100,6 +114,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
 
   return (
     <>
+      <Modal data={countryData} modalState={[modalState, setModalState]} />
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -123,7 +138,10 @@ const Table: React.FC<TableProps> = ({ data }) => {
           {page.map((row) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
+              <tr
+                {...row.getRowProps()}
+                onClick={() => fetchCountryData(row.original.name.common)}
+              >
                 {row.cells.map((cell) => {
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}

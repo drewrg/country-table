@@ -97,3 +97,21 @@ $animation-duration: 0.3s;
 
 // ** Header
 $header-height: 60px;
+
+
+// ** Spinner
+$spinner-size: 6rem;
+// light
+$spinner-color-light: #22414a;
+// dark
+$spinner-color-dark: #2b7d84;
+
+// ** Modal
+// light
+$modal-background-color-light: #d0d0d0;
+$modal-border-color-light: #313131;
+$modal-wrapper-background-color-light: rgba(178, 178, 178, 0.69);
+// dark
+$modal-background-color-dark: #383838FF;
+$modal-border-color-dark: #cecece;
+$modal-wrapper-background-color-dark: rgba(60, 60, 60, 0.69);
